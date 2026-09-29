@@ -3,8 +3,8 @@ layout: default
 permalink: /
 title: "Card games, RPG e comunidade em Cianorte"
 description: "Agenda, resultados e publicações da comunidade Cianorte Card Masters."
-image: "/assets/img/banners/banner-home.webp"
-image_alt: "Dragão verde representando a comunidade Cianorte Card Masters"
+image: "/assets/img/banners/banner-home-2026.webp"
+image_alt: "Mesa de card games em um ambiente de fantasia representando a comunidade Cianorte Card Masters"
 ---
 
 {% assign comunidade_posts = site.comunidade | sort: "date" | reverse %}
@@ -27,23 +27,24 @@ image_alt: "Dragão verde representando a comunidade Cianorte Card Masters"
       <h1>É na mesa<br>que a história<br><em>acontece.</em></h1>
       <p>Card games, RPG e encontros presenciais. Encontre sua próxima mesa, acompanhe os resultados e conheça quem mantém o jogo vivo em Cianorte.</p>
       <div class="ccm-home-actions">
-        <a class="ccm-btn ccm-btn-green" href="#agenda-home">Ver próxima rodada <span>→</span></a>
+        <a class="ccm-btn ccm-btn-green" href="#agenda-home">Ver agenda da semana <span>→</span></a>
         <a class="ccm-btn ccm-btn-ghost" href="{{ whatsapp.url }}" target="_blank" rel="noopener noreferrer">Conhecer a comunidade</a>
       </div>
     </div>
-    {% assign first_event = site.data.home_agenda | first %}
-    <a class="ccm-next-card" href="{{ '/agenda/' | relative_url }}">
-      <div class="ccm-next-label"><span>Próximo encontro</span><span>◷</span></div>
-      <div class="ccm-next-main">
-        <div class="ccm-next-day"><small>{{ first_event.day | slice: 0, 3 | upcase }}</small><strong>DOM</strong></div>
-        <div><p>{{ first_event.location }}</p><h2>{{ first_event.title }}</h2><span>{{ first_event.time }} · Cianorte</span></div>
-      </div>
-      <div class="ccm-next-foot"><span>{{ first_event.game }}</span><b>→</b></div>
-    </a>
+
+    <div class="ccm-games-card" aria-label="Principais card games da comunidade">
+      <div class="ccm-games-card-label"><span>Com nós você joga</span><span>◆</span></div>
+      <ul>
+        <li><span>01</span><strong>Flesh and Blood</strong></li>
+        <li><span>02</span><strong>Pokémon TCG</strong></li>
+        <li><span>03</span><strong>Magic: The Gathering</strong></li>
+      </ul>
+      <p>E ainda encontra espaço para <b>Yu-Gi-Oh!</b>, <b>Sorcery</b> e outras mesas.</p>
+    </div>
   </div>
 </section>
 
-<div class="ccm-game-strip"><div>FLESH AND BLOOD <i>◆</i> POKÉMON TCG <i>◆</i> MAGIC: THE GATHERING <i>◆</i> ONE PIECE <i>◆</i> RPG <i>◆</i> YU-GI-OH! <i>◆</i></div></div>
+<div class="ccm-game-strip" aria-label="Jogos da comunidade"><div>FLESH AND BLOOD <i>◆</i> POKÉMON TCG <i>◆</i> MAGIC: THE GATHERING <i>◆</i> ONE PIECE <i>◆</i> SORCERY <i>◆</i> RIFTBOUND <i>◆</i> YU-GI-OH! <i>◆</i></div></div>
 
 <section class="ccm-home-section" id="agenda-home">
   <div class="container">
@@ -60,21 +61,68 @@ image_alt: "Dragão verde representando a comunidade Cianorte Card Masters"
   </div>
 </section>
 
+<section class="ccm-reading-promos" id="leia-tambem">
+  <div class="container">
+    <div class="ccm-reading-heading">
+      <p class="ccm-kicker"><span>●</span> Mais coisas para colocar na pilha de leitura</p>
+      <h2>Da nossa mesa<br><em>para a sua.</em></h2>
+    </div>
+
+    <div class="ccm-reading-grid">
+      <a class="ccm-zine-promo" data-zine-promo href="https://revista.cianortecardmasters.com.br/" target="_blank" rel="noopener noreferrer">
+        <div class="ccm-zine-cover-wrap">
+          <img data-zine-cover src="{{ '/assets/img/home/zine-placeholder.svg' | relative_url }}" alt="CC Master Zine — capa da edição mais recente">
+        </div>
+        <div class="ccm-zine-copy">
+          <small>Publicação da comunidade</small>
+          <h3>CC Master Zine</h3>
+          <p data-zine-edition>Última edição</p>
+          <span>Abra a edição mais recente e acesse o repositório da Zine.</span>
+          <b>Ler a Zine <i>↗</i></b>
+        </div>
+      </a>
+
+      <a class="ccm-mesa42-promo" data-mesa42-promo href="https://mesa42.cianortecardmasters.com.br/" target="_blank" rel="noopener noreferrer">
+        <div class="ccm-mesa42-image">
+          <img data-mesa42-image src="https://mesa42.cianortecardmasters.com.br/obras/a-carta-eu-existo-realmente-existiu/assets/eu-existo.webp" alt="Imagem da publicação mais recente do Mesa42" loading="lazy">
+          <span>MESA42</span>
+        </div>
+        <div class="ccm-mesa42-copy">
+          <small>Última publicação</small>
+          <h3 data-mesa42-title>A carta “Eu Existo” realmente existiu — e deu trabalho</h3>
+          <p data-mesa42-summary>Uma carta sem texto, sem arte e sem classe conseguiu mexer com design, marketing, meta e ainda terminar a temporada banida.</p>
+          <div><span data-mesa42-reading>7 min de leitura</span><b>Ler no Mesa42 <i>↗</i></b></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="ccm-results-home" id="resultados-home">
-  <div class="ccm-results-art"><img src="{{ '/assets/img/banners/banner-armory-resultado-card.png' | relative_url }}" alt="Resultado de Armory do Cianorte Card Masters"><span>RESULTADOS<br><b>CCM</b></span></div>
-  <div class="ccm-results-content">
-    <p class="ccm-kicker ccm-gold"><span>●</span> Competitivo local</p><h2>Últimos<br><em>resultados</em></h2>
-    {% if latest_armory %}
-    <article class="ccm-competition-card ccm-fab-result">
-      <header><div><small>Flesh and Blood · {{ latest_armory.event_date | default: latest_armory.date | date: '%d.%m.%y' }}</small><h3>{{ latest_armory.title }}</h3></div><span>{{ latest_armory.results.size }} jogadores</span></header>
-      <div>{% for result in latest_armory.results limit: 3 %}<a class="ccm-rank" href="{{ latest_armory.url | relative_url }}"><strong>0{{ forloop.index }}</strong><span><b>{{ result.player }}</b><small>{{ result.hero }}</small></span><em>{{ result.record }}</em></a>{% endfor %}</div>
-    </article>{% endif %}
-    {% if latest_pokemon %}
-    <article class="ccm-competition-card ccm-pokemon-result">
-      <header><div><small>Pokémon TCG · {{ latest_pokemon.event_date | default: latest_pokemon.date | date: '%d.%m.%y' }}</small><h3>{{ latest_pokemon.title }}</h3></div><span>{{ latest_pokemon.results.size }} jogadores</span></header>
-      <div>{% for result in latest_pokemon.results limit: 3 %}<a class="ccm-rank" href="{{ latest_pokemon.url | relative_url }}"><strong>0{{ forloop.index }}</strong><span><b>{{ result.player }}</b><small>{{ result.card | default: result.pokemon }}</small></span><em>{{ result.points }} pts</em></a>{% endfor %}</div>
-    </article>{% endif %}
-    <a class="ccm-text-link" href="{{ '/resultados/' | relative_url }}">Ver todos os resultados →</a>
+  <div class="ccm-results-home-bg" aria-hidden="true"></div>
+  <div class="container ccm-results-content">
+    <div class="ccm-results-heading">
+      <p class="ccm-kicker ccm-gold"><span>●</span> Competitivo local</p>
+      <h2>Últimos<br><em>resultados</em></h2>
+    </div>
+
+    <div class="ccm-results-grid">
+      {% if latest_armory %}
+      <article class="ccm-competition-card ccm-fab-result">
+        <header><div><small>Flesh and Blood · {{ latest_armory.event_date | default: latest_armory.date | date: '%d.%m.%y' }}</small><h3>{{ latest_armory.title }}</h3></div><span>{{ latest_armory.results.size }} jogadores</span></header>
+        <div>{% for result in latest_armory.results limit: 3 %}<a class="ccm-rank" href="{{ latest_armory.url | relative_url }}"><strong>0{{ forloop.index }}</strong><span><b>{{ result.player }}</b><small>{{ result.hero }}</small></span><em>{{ result.record }}</em></a>{% endfor %}</div>
+      </article>
+      {% endif %}
+
+      {% if latest_pokemon %}
+      <article class="ccm-competition-card ccm-pokemon-result">
+        <header><div><small>Pokémon TCG · {{ latest_pokemon.event_date | default: latest_pokemon.date | date: '%d.%m.%y' }}</small><h3>{{ latest_pokemon.title }}</h3></div><span>{{ latest_pokemon.results.size }} jogadores</span></header>
+        <div>{% for result in latest_pokemon.results limit: 3 %}<a class="ccm-rank" href="{{ latest_pokemon.url | relative_url }}"><strong>0{{ forloop.index }}</strong><span><b>{{ result.player }}</b><small>{{ result.card | default: result.pokemon }}</small></span><em>{{ result.points }} pts</em></a>{% endfor %}</div>
+      </article>
+      {% endif %}
+    </div>
+
+    <a class="ccm-text-link ccm-results-link" href="{{ '/resultados/' | relative_url }}">Ver todos os resultados →</a>
   </div>
 </section>
 
@@ -90,6 +138,7 @@ image_alt: "Dragão verde representando a comunidade Cianorte Card Masters"
   </div>
 </div></section>
 
-<section class="ccm-join-home"><div class="container"><div><p class="ccm-kicker ccm-gold"><span>●</span> Sua cadeira está livre</p><h2>Todo mestre<br>já foi <em>iniciante.</em></h2></div><div><p>Não tem deck? Nunca jogou? Sem problema. A comunidade tem decks para ensinar e gente disposta a explicar aquela regra que ninguém entende na primeira vez.</p><a class="ccm-btn ccm-btn-gold" href="{{ whatsapp.url }}" target="_blank" rel="noopener noreferrer">Entrar no WhatsApp →</a></div></div></section>
+<section class="ccm-join-home"><div class="container"><div><p class="ccm-kicker ccm-gold"><span>●</span> Sua cadeira está livre</p><h2>Todo mestre<br>já foi <em>iniciante.</em></h2></div><div><p>Não tem deck? Nunca jogou? Relaxa. Sempre tem alguém disposto a ensinar, emprestar um deck e explicar aquela regra esquisita que ninguém entende na primeira vez.</p><a class="ccm-btn ccm-btn-gold" href="{{ whatsapp.url }}" target="_blank" rel="noopener noreferrer">Entrar no WhatsApp →</a></div></div></section>
 
+<script src="{{ '/assets/js/home-promos.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":{{ site.title | jsonify }},"url":"{{ '/' | absolute_url }}","inLanguage":"pt-BR"}</script>

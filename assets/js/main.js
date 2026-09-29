@@ -411,7 +411,7 @@ if (menuButton && mainNav) {
   document.addEventListener('DOMContentLoaded', initCommunityPhotoCarousels);
 })();
 
-// Home: ordena os encontros pelo próximo dia da semana e mantém somente os três mais próximos.
+// Home: ordena os encontros pelo próximo dia da semana e mantém todos os dias visíveis.
 (function () {
   function initHomeAgenda() {
     const board = document.querySelector('[data-home-agenda-board]');
@@ -430,7 +430,7 @@ if (menuButton && mainNav) {
       })
       .forEach((item, index) => {
         board.appendChild(item);
-        item.hidden = index >= 3;
+        item.hidden = false;
         item.classList.toggle('is-next', index === 0);
       });
   }

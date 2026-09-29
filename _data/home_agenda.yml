@@ -1,6 +1,6 @@
 # Agenda resumida exibida na Home.
 # O campo weekday usa a numeração do JavaScript: domingo 0, segunda 1 ... sábado 6.
-# A Home ordena automaticamente os encontros a partir do dia atual e mostra os três próximos.
+# A Home ordena automaticamente os encontros a partir do dia atual e mantém todos os dias visíveis.
 
 - weekday: 0
   day: "Domingo"

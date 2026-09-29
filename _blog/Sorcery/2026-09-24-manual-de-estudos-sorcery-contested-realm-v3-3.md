@@ -9,6 +9,8 @@ autor_slug: "scopel"
 date: 2026-09-24
 schema_type: "BlogPosting"
 content_style: "sorcery"
+image: "/assets/img/posts/sorcery-manual-v3-3.webp"
+image_alt: "Arte de Sorcery: Contested Realm com destaque para o título Rules"
 permalink: /blog/sorcery/manual-de-estudos-sorcery-contested-realm-v3-3/
 tags:
   - manual
