@@ -40,6 +40,7 @@
     const image = safeUrl(latest.image || latest.imagem || latest.cover || latest.capa, "");
     const title = textValue(latest.title, latest.titulo);
     const summary = textValue(latest.summary, latest.resumo, latest.description, latest.descricao);
+    const category = textValue(latest.category, latest.categoria, latest.type, latest.tipo);
     const readingRaw = latest.readingTime ?? latest.tempoLeitura ?? latest.reading_time;
     const reading = readingRaw
       ? (/min/i.test(String(readingRaw)) ? String(readingRaw) : `${readingRaw} min de leitura`)
@@ -50,9 +51,11 @@
     const titleEl = card.querySelector("[data-mesa42-title]");
     const summaryEl = card.querySelector("[data-mesa42-summary]");
     const readingEl = card.querySelector("[data-mesa42-reading]");
+    const categoryEl = card.querySelector("[data-mesa42-category]");
     const imageEl = card.querySelector("[data-mesa42-image]");
 
     if (title && titleEl) titleEl.textContent = title;
+    if (category && categoryEl) categoryEl.textContent = category;
     if (summary && summaryEl) summaryEl.textContent = summary;
     if (reading && readingEl) readingEl.textContent = reading;
 
@@ -82,7 +85,7 @@
 
     card.href = repositoryUrl;
 
-    const editionEl = card.querySelector("[data-zine-edition]");
+    const editionEl = document.querySelector("[data-zine-edition]");
     const coverEl = card.querySelector("[data-zine-cover]");
 
     if (editionEl) editionEl.textContent = edition;
