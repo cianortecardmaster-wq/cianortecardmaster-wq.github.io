@@ -61,6 +61,46 @@ image_alt: "Mesa de card games em um ambiente de fantasia representando a comuni
   </div>
 </section>
 
+<section class="ccm-results-home" id="resultados-home">
+  <div class="ccm-results-home-bg" aria-hidden="true"></div>
+  <div class="container ccm-results-content">
+    <div class="ccm-results-heading">
+      <p class="ccm-kicker ccm-gold"><span>●</span> Competitivo local</p>
+      <h2>Últimos<br><em>resultados</em></h2>
+    </div>
+
+    <div class="ccm-results-grid">
+      {% if latest_armory %}
+      <article class="ccm-competition-card ccm-fab-result">
+        <header><div><small>Flesh and Blood · {{ latest_armory.event_date | default: latest_armory.date | date: '%d.%m.%y' }}</small><h3>{{ latest_armory.title }}</h3></div><span>{{ latest_armory.results.size }} jogadores</span></header>
+        <div>{% for result in latest_armory.results limit: 3 %}<a class="ccm-rank" href="{{ latest_armory.url | relative_url }}"><strong>0{{ forloop.index }}</strong><span><b>{{ result.player }}</b><small>{{ result.hero }}</small></span><em>{{ result.record }}</em></a>{% endfor %}</div>
+      </article>
+      {% endif %}
+
+      {% if latest_pokemon %}
+      <article class="ccm-competition-card ccm-pokemon-result">
+        <header><div><small>Pokémon TCG · {{ latest_pokemon.event_date | default: latest_pokemon.date | date: '%d.%m.%y' }}</small><h3>{{ latest_pokemon.title }}</h3></div><span>{{ latest_pokemon.results.size }} jogadores</span></header>
+        <div>{% for result in latest_pokemon.results limit: 3 %}<a class="ccm-rank" href="{{ latest_pokemon.url | relative_url }}"><strong>0{{ forloop.index }}</strong><span><b>{{ result.player }}</b><small>{{ result.card | default: result.pokemon }}</small></span><em>{{ result.points }} pts</em></a>{% endfor %}</div>
+      </article>
+      {% endif %}
+    </div>
+
+    <a class="ccm-text-link ccm-results-link" href="{{ '/resultados/' | relative_url }}">Ver todos os resultados →</a>
+  </div>
+</section>
+
+<section class="ccm-home-section ccm-publications-home" id="publicacoes-home"><div class="container">
+  <div class="ccm-section-heading"><div><p class="ccm-kicker"><span>●</span> Conteúdo da comunidade</p><h2>Últimas<br><em>publicações</em></h2></div><div><p>Em ordem de publicação: a novidade<br>mais recente aparece sempre primeiro.</p><a href="{{ '/posts/' | relative_url }}">Todas as publicações →</a></div></div>
+  <div class="ccm-post-grid">
+    {% for post in home_publications limit: 3 %}
+    {% assign fallback = site.data.images.post_defaults[post.content_style] | default: site.data.images.post_default %}
+    <a class="ccm-post-card {% if forloop.first %}ccm-post-featured{% endif %}" href="{{ post.url | relative_url }}">
+      <div class="ccm-post-image"><img src="{{ post.image | default: fallback | relative_url }}" alt="{{ post.image_alt | default: post.title | escape }}" loading="lazy"><span>0{{ forloop.index }}</span></div>
+      <div class="ccm-post-copy"><div><small>{{ post.category_label | default: 'Publicação' }}</small><time>{{ post.date | date: '%d %b %Y' | upcase }}</time></div><h3>{{ post.title }}</h3><p>{{ post.summary | default: post.excerpt | strip_html | truncate: 145 }}</p><b>Ler publicação →</b></div>
+    </a>{% endfor %}
+  </div>
+</div></section>
+
 <section class="ccm-reading-promos" id="leia-tambem">
   <div class="container">
     <div class="ccm-reading-grid">
@@ -108,45 +148,6 @@ image_alt: "Mesa de card games em um ambiente de fantasia representando a comuni
   </div>
 </section>
 
-<section class="ccm-results-home" id="resultados-home">
-  <div class="ccm-results-home-bg" aria-hidden="true"></div>
-  <div class="container ccm-results-content">
-    <div class="ccm-results-heading">
-      <p class="ccm-kicker ccm-gold"><span>●</span> Competitivo local</p>
-      <h2>Últimos<br><em>resultados</em></h2>
-    </div>
-
-    <div class="ccm-results-grid">
-      {% if latest_armory %}
-      <article class="ccm-competition-card ccm-fab-result">
-        <header><div><small>Flesh and Blood · {{ latest_armory.event_date | default: latest_armory.date | date: '%d.%m.%y' }}</small><h3>{{ latest_armory.title }}</h3></div><span>{{ latest_armory.results.size }} jogadores</span></header>
-        <div>{% for result in latest_armory.results limit: 3 %}<a class="ccm-rank" href="{{ latest_armory.url | relative_url }}"><strong>0{{ forloop.index }}</strong><span><b>{{ result.player }}</b><small>{{ result.hero }}</small></span><em>{{ result.record }}</em></a>{% endfor %}</div>
-      </article>
-      {% endif %}
-
-      {% if latest_pokemon %}
-      <article class="ccm-competition-card ccm-pokemon-result">
-        <header><div><small>Pokémon TCG · {{ latest_pokemon.event_date | default: latest_pokemon.date | date: '%d.%m.%y' }}</small><h3>{{ latest_pokemon.title }}</h3></div><span>{{ latest_pokemon.results.size }} jogadores</span></header>
-        <div>{% for result in latest_pokemon.results limit: 3 %}<a class="ccm-rank" href="{{ latest_pokemon.url | relative_url }}"><strong>0{{ forloop.index }}</strong><span><b>{{ result.player }}</b><small>{{ result.card | default: result.pokemon }}</small></span><em>{{ result.points }} pts</em></a>{% endfor %}</div>
-      </article>
-      {% endif %}
-    </div>
-
-    <a class="ccm-text-link ccm-results-link" href="{{ '/resultados/' | relative_url }}">Ver todos os resultados →</a>
-  </div>
-</section>
-
-<section class="ccm-home-section ccm-publications-home" id="publicacoes-home"><div class="container">
-  <div class="ccm-section-heading"><div><p class="ccm-kicker"><span>●</span> Conteúdo da comunidade</p><h2>Últimas<br><em>publicações</em></h2></div><div><p>Em ordem de publicação: a novidade<br>mais recente aparece sempre primeiro.</p><a href="{{ '/posts/' | relative_url }}">Todas as publicações →</a></div></div>
-  <div class="ccm-post-grid">
-    {% for post in home_publications limit: 3 %}
-    {% assign fallback = site.data.images.post_defaults[post.content_style] | default: site.data.images.post_default %}
-    <a class="ccm-post-card {% if forloop.first %}ccm-post-featured{% endif %}" href="{{ post.url | relative_url }}">
-      <div class="ccm-post-image"><img src="{{ post.image | default: fallback | relative_url }}" alt="{{ post.image_alt | default: post.title | escape }}" loading="lazy"><span>0{{ forloop.index }}</span></div>
-      <div class="ccm-post-copy"><div><small>{{ post.category_label | default: 'Publicação' }}</small><time>{{ post.date | date: '%d %b %Y' | upcase }}</time></div><h3>{{ post.title }}</h3><p>{{ post.summary | default: post.excerpt | strip_html | truncate: 145 }}</p><b>Ler publicação →</b></div>
-    </a>{% endfor %}
-  </div>
-</div></section>
 
 <section class="ccm-join-home"><div class="container"><div><p class="ccm-kicker ccm-gold"><span>●</span> Sua cadeira está livre</p><h2>Todo mestre<br>já foi <em>iniciante.</em></h2></div><div><p>Não tem deck? Nunca jogou? Relaxa. Sempre tem alguém disposto a ensinar, emprestar um deck e explicar aquela regra esquisita que ninguém entende na primeira vez.</p><a class="ccm-btn ccm-btn-gold" href="{{ whatsapp.url }}" target="_blank" rel="noopener noreferrer">Entrar no WhatsApp →</a></div></div></section>
 
