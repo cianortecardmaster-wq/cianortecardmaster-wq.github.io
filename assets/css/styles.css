@@ -14313,3 +14313,61 @@ tr.is-champion .fab-result-rank::before {
   .ccm-mesa42-copy>div{align-items:flex-start;flex-direction:column;gap:.65rem}
   .ccm-mesa42-copy b{align-self:flex-end}
 }
+
+/* Correção da marca Mesa42 e carregamento visual da capa da Zine */
+.ccm-mesa42-brand{
+  min-height:96px;
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin:0 0 1rem;
+}
+.ccm-mesa42-brand .ccm-mesa42-mark{
+  width:82px;
+  height:82px;
+  flex:0 0 82px;
+  object-fit:contain;
+  object-position:center;
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,.18));
+}
+.ccm-mesa42-brand-copy{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.ccm-mesa42-brand-copy strong{
+  display:block;
+  color:#f7f0df;
+  font-family:"Fugaz One",sans-serif;
+  font-size:clamp(2.3rem,4.25vw,4rem);
+  line-height:.9;
+  letter-spacing:.015em;
+  white-space:nowrap;
+  text-shadow:0 4px 18px rgba(0,0,0,.16);
+}
+.ccm-mesa42-brand-copy span{
+  display:block;
+  margin-top:.5rem;
+  color:#dfc46b;
+  font-family:Georgia,serif;
+  font-size:.82rem;
+  font-style:italic;
+  font-weight:700;
+  letter-spacing:.015em;
+}
+.ccm-zine-cover-wrap img{
+  background:#f8f3e8;
+}
+@media(max-width:1000px){
+  .ccm-mesa42-brand{justify-content:center;gap:.85rem}
+  .ccm-mesa42-brand .ccm-mesa42-mark{width:72px;height:72px;flex-basis:72px}
+  .ccm-mesa42-brand-copy strong{font-size:clamp(2.25rem,8vw,3.35rem)}
+  .ccm-mesa42-brand-copy span{font-size:.76rem}
+}
+@media(max-width:560px){
+  .ccm-mesa42-brand{min-height:68px;gap:.6rem;margin-bottom:.8rem}
+  .ccm-mesa42-brand .ccm-mesa42-mark{width:58px;height:58px;flex-basis:58px}
+  .ccm-mesa42-brand-copy strong{font-size:2.2rem}
+  .ccm-mesa42-brand-copy span{margin-top:.3rem;font-size:.66rem}
+}

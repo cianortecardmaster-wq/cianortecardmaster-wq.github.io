@@ -72,26 +72,38 @@
     if (!card || !payload) return;
 
     const latest = payload.latest || payload.ultima || payload.issue || payload;
-    const repositoryUrl = safeUrl(
-      payload.siteUrl || payload.site_url || payload.repositoryUrl || payload.repository_url || latest.url,
+    const siteUrl = safeUrl(
+      payload.siteUrl || payload.site_url || payload.repositoryUrl || payload.repository_url,
       "https://revista.cianortecardmasters.com.br/"
     );
 
     const editionRaw = textValue(latest.edition, latest.edicao, latest.number, latest.numero);
+    const editionCodeMatch = String(editionRaw || "").match(/\d+/);
+    const editionCode = editionCodeMatch ? editionCodeMatch[0].padStart(3, "0") : "001";
     const edition = editionRaw
-      ? (/edi/i.test(editionRaw) ? editionRaw : `Edição ${editionRaw}`)
-      : "Última edição";
-    const cover = safeUrl(latest.cover || latest.capa || latest.image || latest.imagem, "");
+      ? (/edi/i.test(editionRaw) ? editionRaw : `Edição ${editionCode}`)
+      : `Edição ${editionCode}`;
 
-    card.href = repositoryUrl;
+    const issueUrl = safeUrl(latest.url || latest.link, siteUrl);
+    const coverFallback = `${siteUrl.replace(/\/$/, "")}/data/capas/${editionCode}.jpg`;
+    const cover = safeUrl(latest.cover || latest.capa || latest.image || latest.imagem, coverFallback);
+
+    card.href = issueUrl;
 
     const editionEl = document.querySelector("[data-zine-edition]");
     const coverEl = card.querySelector("[data-zine-cover]");
 
     if (editionEl) editionEl.textContent = edition;
 
-    if (cover && coverEl) {
-      coverEl.src = cover;
+    if (coverEl) {
+      let triedFallback = false;
+      coverEl.onerror = () => {
+        if (!triedFallback && coverEl.src !== coverFallback) {
+          triedFallback = true;
+          coverEl.src = coverFallback;
+        }
+      };
+      coverEl.src = cover || coverFallback;
       coverEl.alt = `CC Master Zine — ${edition}`;
     }
 
